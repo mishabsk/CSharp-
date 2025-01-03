@@ -1,0 +1,59 @@
+using System;
+using System;                       // Core functionality
+using System.Collections.Generic;   // Generic collections
+using System.Linq;                  // LINQ queries
+using System.Text;                  // String manipulation
+using System.Threading.Tasks;
+
+
+namespace X{
+    public class RockPaperScissors {
+        static void Main() {
+            string[] choices = { "Rock", "Paper", "Scissors" };
+            Random random = new Random();
+            bool playAgain = true;
+
+            Console.WriteLine("Welcome to Computer V/s You, Rock Paper Scissors");
+            Console.WriteLine("Choose between rock, paper, or scissors");
+
+            while (playAgain)
+            {
+                Console.WriteLine("Let's Go! Select between RPS");
+                string userChoice = Console.ReadLine()?.Trim().ToLower();
+                Console.WriteLine($"Your choice was {userChoice}");
+
+                if (userChoice == "rock" || userChoice == "paper" || userChoice == "scissors")
+                {
+                    int computerIndex = random.Next(0, 3); // Generate index 0-2
+                    string computerChoice = choices[computerIndex];
+                    Console.WriteLine($"Computer's choice is {computerChoice}");
+
+                    if ((userChoice == "rock" && computerChoice == "Scissors") ||
+                        (userChoice == "paper" && computerChoice == "Rock") ||
+                        (userChoice == "scissors" && computerChoice == "Paper"))
+                    {
+                        Console.WriteLine("You Win!");
+                    }
+                    else if (userChoice == computerChoice.ToLower())
+                    {
+                        Console.WriteLine("It's a Tie!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Computer Wins!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Choice. Please select rock, paper, or scissors.");
+                }
+
+                Console.Write("\nDo you want to play again? (yes/no): ");
+                string playAgainInput = Console.ReadLine()?.Trim().ToLower();
+                playAgain = playAgainInput == "yes";
+            }
+
+            Console.WriteLine("Thanks for playing! Goodbye!");
+        }
+    }
+}
